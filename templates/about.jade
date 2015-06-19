@@ -1,0 +1,19 @@
+
+extends layout
+//- this logic should be moved to a view at some point
+
+block content
+    div= locals.name
+    div !{page.html}
+    - console.log(page.html)
+    div= locals.name
+
+    section
+        :markdown
+            # Lightning Talk(LT)のススメ
+
+            とりあえず5分喋ってみよう
+
+            @mkkn_info
+
+

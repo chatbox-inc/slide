@@ -1,0 +1,25 @@
+doctype html
+html(lang='ja')
+  head
+    meta(charset='utf-8')
+    block titles
+        title HOGE
+        meta(name='description', content='PHPマイクロフレームワーク lumen')
+        meta(name='author', content='mikakane')
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui')
+
+    link(rel='stylesheet', href='/bower_components/reveal.js/css/reveal.css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/earlyaccess/notosansjapanese.css')
+    link#theme(rel='stylesheet', href='/assets/css/mytheme.css')
+    link(rel='stylesheet', href='/bower_components/reveal.js/lib/css/zenburn.css')
+  body
+    .reveal
+      .slides
+        block sections
+          no sections
+    p(style="font-family:'Noto Sans Japanese'") sample
+    script(src='/bower_components/reveal.js/lib/js/head.min.js')
+    script(src='/bower_components/reveal.js/js/reveal.js')
+    script(src='/assets/js/setting.js')

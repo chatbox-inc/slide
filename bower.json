@@ -1,0 +1,11 @@
+{
+  "name": "chatbox-site",
+  "description": "chatbox site",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "font-awesome": "~4.3.0",
+    "reveal.js": "~3.1.0"
+  }
+}
