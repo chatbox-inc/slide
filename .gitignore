@@ -1,1 +1,5 @@
 /build
+/.sass-cache
+/contents/bower_components
+/node_modules
+/fonts

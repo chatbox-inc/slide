@@ -5,5 +5,9 @@
     "typogr": "0.5.x",
     "underscore": "1.4.x"
   },
+  "scripts":{
+    "build":"wintersmith build --clean && cp -R contents/assets build/assets && cp -R contents/bower_components build/bower_components",
+    "fonts":"text=`cat fonts/target_chars.txt` && fontmin -t $text fonts/mplus-2p-thin.ttf ./contents/assets/font/"
+  },
   "repository": "none"
 }

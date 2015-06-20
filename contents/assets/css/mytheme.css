@@ -15,9 +15,9 @@ body {
 
 /* line 12, ../../../theme/template/theme.scss */
 .reveal {
-  font-family: "Noto Sans Japanese", serif;
+  font-family: "mplus-1p-thin", sanserif;
   font-size: 36px;
-  font-weight: 100;
+  font-weight: normal;
   color: #eee;
 }
 
@@ -32,7 +32,7 @@ body {
 .reveal .slides > section,
 .reveal .slides > section > section {
   line-height: 1.3;
-  font-weight: 100;
+  font-weight: inherit;
 }
 
 /*********************************************
@@ -47,8 +47,8 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #eee;
-  font-family: "Noto Sans Japanese", serif;
-  font-weight: 100;
+  font-family: "mplus-1p-thin", sanserif;
+  font-weight: normal;
   line-height: 1.2;
   letter-spacing: normal;
   text-transform: normal;
@@ -102,7 +102,7 @@ body {
 /* line 81, ../../../theme/template/theme.scss */
 .reveal strong,
 .reveal b {
-  font-weight: 100;
+  font-weight: bold;
 }
 
 /* line 86, ../../../theme/template/theme.scss */
@@ -150,7 +150,7 @@ body {
 
 /* line 123, ../../../theme/template/theme.scss */
 .reveal dt {
-  font-weight: 100;
+  font-weight: bold;
 }
 
 /* line 127, ../../../theme/template/theme.scss */
@@ -226,7 +226,7 @@ body {
 
 /* line 191, ../../../theme/template/theme.scss */
 .reveal table th {
-  font-weight: 100;
+  font-weight: bold;
 }
 
 /* line 195, ../../../theme/template/theme.scss */
@@ -400,14 +400,44 @@ body {
 
 /* line 32, ../../../theme/mytheme.scss */
 .reveal {
-  font-family: 'Lucida Grande',
-  'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3',
-  Meiryo, メイリオ, sans-serif;
+  font-family: "mplus-1p-thin", sanserif;
   font-size: 36px;
   font-weight: 100;
   color: #eee;
 }
 
-*{
-    font-weight: 100 !important;
+/* line 39, ../../../theme/mytheme.scss */
+.spinner {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  margin-top: -30px;
+  margin-left: -30px;
+  top: 50%;
+  left: 50%;
+  background-color: #13DAEC;
+  border-radius: 100%;
+  -webkit-animation: scaleout 1.0s infinite ease-in-out;
+  animation: scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes scaleout {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+}
+@keyframes scaleout {
+  0% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
 }

@@ -11,15 +11,24 @@ html(lang='ja')
     meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui')
 
     link(rel='stylesheet', href='/bower_components/reveal.js/css/reveal.css')
-    link(rel='stylesheet', href='http://fonts.googleapis.com/earlyaccess/notosansjapanese.css')
+    //link(rel='stylesheet', href='http://fonts.googleapis.com/earlyaccess/notosansjapanese.css')
+    style.
+        @font-face
+        {
+        font-family: mplus-1p-thin;
+        src: url('/assets/font/mplus-2p-thin.woff')
+            format("truetype");
+        }
     link#theme(rel='stylesheet', href='/assets/css/mytheme.css')
     link(rel='stylesheet', href='/bower_components/reveal.js/lib/css/zenburn.css')
   body
+    div.spinner
     .reveal
       .slides
         block sections
           no sections
-    p(style="font-family:'Noto Sans Japanese'") sample
+    p(style="font-family:'mplus-1p-thin';color:transparant") sample
+    script(src='/bower_components/jquery/dist/jquery.min.js')
     script(src='/bower_components/reveal.js/lib/js/head.min.js')
     script(src='/bower_components/reveal.js/js/reveal.js')
     script(src='/assets/js/setting.js')
