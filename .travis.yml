@@ -9,7 +9,7 @@ deploy:
     secure: "jL4AyWOw+dc3H3zsJtWuR+QApLFFnsT7+jaIm1Ocb5LxUyb4NWvqzmMDLFWIPdayp20Bz0GLaWOnTkjDIryd9hHUvDuxZU9HmH+EQNz0HVtFIPMU0FM7H4aIg1PapjUPWydRMn0oPEXV39+uF+IY2lrb2kk7cifIUq0f/8el3i287QbTm6DRIWFHw38JhUqiT9inTm9gVeNUVZzWyI+YTmnQogpu/flZUokGJr7Ocf58D6aB6/0tZ93Z0DZ1WvCoiRh6L3HMOSJaNZIJh9wiRq6/vlLVUfSusWP5fJBD3KKQXmLK8Zjqxi2LklQJD0kqXydjcvmnwFvDpBLLFjOE9V81ShXoX/zWURJmMwiBoDelwpehW+ze7S1YUJwH9y4P8jhnUt3yHQuABrD090VR3Pp7BzAtaCVqkdegwkOtlScZLD4IAQaDaUXh55jnLsnAbou3iWdCglsXoaMRlQWDs5fn6ff0vmO5j9aLJT3sI0wZEDeFNcn7kpQKXkrmGbBdf7yOHkkYws/LLrrQd+5IF74H3xE7oFghS8YeZUpYRTsn04KREP+X7lX8xQK4R6t4aiol8s4tdEwjuk6Pu4GNDqcSPh9njB08IejQuURLbWH5V9I1rbTjIJAtf47PRIoy1ljU1FXBk7sUnkCI6+dqeZ6z/6r0Hwt2iMe5oE08Drs="
   bucket: slide.chatbox-inc.com
   region: Tokyo
-  endpoint: s3-website-ap-northeast-1.amazonaws.com
+  endpoint: s3-ap-northeast-1.amazonaws.com
   local-dir: build
   on:
     branch: master
