@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- '0.11'
+- '0.10'
+deploy:
+  provider: s3
+  access_key_id: AKIAI654C2HVVDLGWR2A
+  secret_access_key:
+    secure: T0giK5Z9EYP7pyiocotjC62FLYO23W/Yg/3+FZDHbtR+hIa6ixIYnjkD3XiuJAmQzLLLwG2J2St98qfLMWLUXkGky13mngfDows6C/Kmpcp83AtM7FFp8kC0iTugFs6IrTVqCmLHYUBnDeZPxQ7Jmypogi9s+kt27H6DQ/ZBlXniFsuKp0w4ICY9GAtvRzE8gwFGEdeT4FHJRYDNIUKltCweBMi6P3kR4Vi580jOSfqft+OG3NoxL37yT6LlmPm0dY6dYS66+8r+g+KnrXEfXQmkI1FLnKOg89Kz5aXW4fN5PD4YoSmExyxVimxyF1upujYR+QOKopTZ/6RMSAISl62xVEuzjP10wSOr+SMxyYABDimjFvl4M34211iliQKxOZWydwykDOmtJP3ijIeXuCuy5a6Cv/NsBuIrohAysgJnNIc4LkLRRVDCimwBsGS4CTi2g83YMLVRqA8JKnf730mJZVPWZrHaxrVOP05/geRKOofDnmZ+lqkPWHU9dsImgnZQG7uIebE1O8uBhEa6N3vZ/2d2GQGUTdsL35D+N+qfW7t7BSyOuS9QFdtfnyYx2HBP8LsfmmSkFxJFLMkhwpmbz3Gwtz05Hbrs7FgqnjfGFVFPO4GuM9ntWFzbhDhEgWLLljNnGO5mPMDqnJu110TiqvKurq5KTJBA5fwKD1w=
+  bucket: slide.chatbox-inc.com
+  region: Tokyo
+  endpoint: slide.chatbox-inc.com.s3-website-ap-northeast-1.amazonaws.com
+  local-dir: build
+  on:
+    branch: master
