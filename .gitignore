@@ -2,3 +2,4 @@
 /contents/bower_components
 /node_modules
 /fonts
+.env
