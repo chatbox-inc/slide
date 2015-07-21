@@ -1,0 +1,93 @@
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+$mainFont:'mplus-2p-thin', sanserif;
+$headingFont:'mplus-2p-thin', sanserif;
+
+$headingTextTransform: normal;
+
+$heading1Size: 2.11em;
+$heading2Size: 1.55em;
+$heading3Size: 1.20em;
+$heading4Size: 1.00em;
+
+// additionalValue
+$themeColor: #f4645f;
+$linkColor: #5dcbf0;
+$linkColorHover: lighten( $linkColor, 20% );
+
+
+// Background generator
+@mixin bodyBackground() {
+  @include radial-gradient( $themeColor,$themeColor);
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+@import "../template/custom";
+// ---------------------------------------------
+
+
+@font-face {
+  font-family: mplus-2p-thin;
+  src: url('/assets/font/mplus-2p-thin.woff') format("truetype");
+}
+
+.slides{
+
+  ul{
+    list-style: none;
+    li::before{
+        color:#aaaaaa;
+        content: "# ";
+    }
+  }
+
+  // 縦のレイアウト
+  section[data-background="./vertical.svg"]{
+    top:0 !important;
+    height: 100%;
+    .box:first-child{
+      width: 100%;
+      position: absolute;
+      bottom:55%;
+    }
+    .box:last-child{
+      width: 100%;
+      position: absolute;
+      top:50%;
+      color: #333;
+      a{
+        color: $themeColor;
+      }
+
+    }
+  }
+
+  // 横のレイアウト
+  section[data-background="./horizontal.svg"]{
+    top:0 !important;
+    width: 100%;
+    height: 100%;
+    display: table !important;
+    .box{
+      display: table-cell;
+      vertical-align: middle;
+      height: 100%;
+      width: 50%;
+    }
+    .box:first-child{
+    }
+    .box:last-child{
+      color: #333;
+      a{
+        color: $themeColor;
+      }
+    }
+  }
+
+}
+
+
+

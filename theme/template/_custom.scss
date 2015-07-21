@@ -1,0 +1,35 @@
+
+//ローディングオブジェクトの実装
+.spinner {
+  width: 60px;
+  height: 60px;
+  position:absolute;
+  margin-top:-30px;
+  margin-left: -30px;
+  top:50%;
+  left:50%;
+  background-color: $linkColor;
+
+  border-radius: 100%;
+  -webkit-animation: scaleout 1.0s infinite ease-in-out;
+  animation: scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes scaleout {
+  0% { -webkit-transform: scale(0.0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes scaleout {
+  0% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 100% {
+      transform: scale(1.0);
+      -webkit-transform: scale(1.0);
+      opacity: 0;
+    }
+}

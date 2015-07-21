@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Laravel PHP フレームワーク 超入門</title>
+    <meta name="description" content="Laravel PHP フレームワーク 超入門">
+    <meta name="author" content="mikakane">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="/bower_components/reveal.js/css/reveal.css">
+    <!--link(rel='stylesheet', href='http://fonts.googleapis.com/earlyaccess/notosansjapanese.css')-->
+    <link id="theme" rel="stylesheet" href="/assets/css/custom/pale.css">
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script src="/bower_components/reveal.js/js/reveal.js"></script>
+    <script src="/assets/js/setting.js"></script>
+  </head>
+  <body>
+    <div class="spinner"></div>
+    <div class="reveal">
+      <div class="slides">
+        <section class="cover"><h1 id="laravel-php-2015">Laravelで学ぶPHP 2015</h1>
+<p><a href="https://kphpug.doorkeeper.jp/events/27544">関西PHP UserGroup 8月勉強会</a></p>
+
+        </section>
+        <section><h2 id="mikakane">mikakane</h2>
+<ul>
+<li>株式会社chatbox 代表</li>
+<li>PHPer / フロントエンド</li>
+</ul>
+
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="laravel">Laravel</h2>
+<p>PHP界隈で何かと話題のフレームワーク</p>
+<p><a href="http://laravel.com">http://laravel.com</a></p>
+
+          </div>
+          <div class="box"><p>初心者におすすめか…と言われるとそうでもない</p>
+<p>とりあえず郷に入らば郷に従え…的な感じでのおすすめ</p>
+
+          </div>
+        </section>
+        <section data-background="./horizontal.svg">
+          <div class="box"><h2 id="-">豊富な機能</h2>
+
+          </div>
+          <div class="box"><ul>
+<li>基本的なMVC</li>
+<li>クロージャルート</li>
+<li>セッション/DB仮想化</li>
+<li>DBマイグレーション</li>
+<li>テンプレートエンジン</li>
+<li>CLIサポート</li>
+<li>自動テストサポート</li>
+<li>IoCコンテナ</li>
+<li>認証</li>
+<li>キュー処理</li>
+<li>支払処理</li>
+</ul>
+
+          </div>
+        </section>
+        <section><p>フルスタックフレームワーク</p>
+
+        </section>
+        <section data-background="./horizontal.svg">
+          <div class="box"><h2 id="-">環境要件</h2>
+
+          </div>
+          <div class="box"><ul>
+<li>PHP &gt;= 5.5.9</li>
+<li>OpenSSL PHP Extension</li>
+<li>PDO PHP Extension</li>
+<li>Mbstring PHP Extension</li>
+<li>Tokenizer PHP Extension</li>
+</ul>
+
+          </div>
+        </section>
+        <section><p>やや、厳しめ…</p>
+
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="laravel-homestead">Laravel Homestead</h2>
+<p>Vagrantを利用してLaravel5.1が動作する簡単に仮想環境を構築できる。</p>
+<p><a href="http://laravel.com/docs/5.1/homestead">http://laravel.com/docs/5.1/homestead</a></p>
+
+          </div>
+          <div class="box"><p><a href="http://vagrantup.com/">Vagrant</a>は、<code>Vagrantfile</code>と呼ばれる設定ファイルを元に仮想環境をセットアップするプロダクト。</p>
+<p>その他Macだと<a href="http://php-osx.liip.ch/">http://php-osx.liip.ch/</a>のPHPを導入する方法も</p>
+
+          </div>
+        </section>
+        <section><h2 id="-">シンプルな構成</h2>
+<p>シンプルにクロージャのルートを書くことで、ルートを定義できる。</p>
+<pre><code>Route::get(&#39;/&#39;, function () {
+    return view(&#39;welcome&#39;);
+});
+
+Route::get(&#39;/sample&#39;, function () {
+    return &quot;hello world&quot;;
+});
+
+Route::get(&#39;/dashboard&#39;, function () {
+    //view関数でテンプレートをレンダリング 第二引数で変数をバインド
+    return view(&#39;sample/dashboard&#39;,[
+        &quot;message&quot; =&gt; &quot;Hello World&quot;
+    ]);
+});
+</code></pre><p><a href="https://github.com/mikakane/laravel_sample/blob/master/app/Http/routes.php">app/Http/routes.php</a></p>
+
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="view-blade-template">View - Blade Template</h2>
+<p>Laravelの提供するTemplate Engine</p>
+<p><a href="http://laravel.com/docs/5.1/blade">http://laravel.com/docs/5.1/blade</a></p>
+
+          </div>
+          <div class="box"><p>ファイルは全て<code>resource</code>ディレクトリの中へ</p>
+<p>拡張子を<code>.blade.php</code>に切り替えることで利用可能。SmartyやTwigよりは柔軟で使いやすい印章</p>
+<p>もちろん普通のPHPテンプレートも使える。</p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="database">Database</h2>
+<p>DBの接続は、DBクラスからクエリ発行で可能</p>
+<p>Databaseの設定は<code>config/database.php</code>で</p>
+
+          </div>
+          <div class="box"><p>クエリビルダや、Eloquentを利用したよりシンプルなDBへの接続方法も(後述)</p>
+<p>DBの種別はMySQLやPostgres,SQL ServerからSQLiteまで</p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="migrate">Migrate</h2>
+<p>テーブルを作成したり、テストデータを投入したりする仕組み</p>
+<p><a href="https://github.com/mikakane/laravel_sample/blob/master/database/migrations/2014_10_12_000000_create_users_table.php">database/migrations/2014_..._users_table.php</a></p>
+<p><a href="https://github.com/mikakane/laravel_sample/blob/master/database/seeds/DatabaseSeeder.php">database/seeds/DatabaseSeeder.php</a></p>
+
+          </div>
+          <div class="box"><p>以下のコマンドを叩くことで、
+テーブルの作成/テストデータの投入が可能</p>
+<pre><code>$ php artisan migrate ＃テーブルの作成
+
+$ php artisan db:seed # テストデータ投入
+</code></pre>
+          </div>
+        </section>
+        <section><p>このへんの基本さえ抑えておけば、</p>
+<p>まぁアプリケーションはとりあえず組める。</p>
+
+        </section>
+        <section><p>ただ、ルートにまとめて書いていくと…</p>
+<p>当然スパゲティになる</p>
+
+        </section>
+        <section><p>適当なクラス分割：設計が必要</p>
+
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="mvc-model-view-controller">MVC - Model View Controller</h2>
+<p>広く一般的に知られるアプリケーション設計</p>
+<p>Laravelでも採用されている。</p>
+
+          </div>
+          <div class="box"><p>Viewの切り分けは<code>view()</code>関数とテンプレートで実現可能。</p>
+<p>ControllerとModelの切り分けはクラス分割で進めていく。</p>
+<p>分割したクラスをどうやって管理するか =&gt; Autoloader</p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="autoloader">Autoloader</h2>
+<p>分割されたクラスを自動的に読み込む<code>Composer</code>の仕組み</p>
+<p>ファイルパスとクラス名(+<a href="http://php.net/manual/ja/language.namespaces.php">名前空間</a>)の対応付けで自動読み込みを行う。</p>
+
+          </div>
+          <div class="box"><p>もう<code>require</code>や<code>require_once</code>は書かなくていい。</p>
+<p>必要なファイルは必要なときに読み込まれる。</p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="controller">Controller</h2>
+<p>リクエストの処理や、View、Modelの呼び出しなどを行う場所</p>
+<p>極力スッキリと簡潔になるよう努めると、アプリケーションの保守性が大きく変わってくる。</p>
+
+          </div>
+          <div class="box"><p>Controllerもルートの設定は必要</p>
+<p>traitなどを使用して、アクションメソドの中身を極力簡潔に整理していくと良い。</p>
+<p><a href="https://github.com/mikakane/laravel_sample/blob/master/app/Http/Controllers/UserController.php">app/Http/Controllers/UserController.php</a></p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="trait">Trait</h2>
+<p>クラスの実装などを分離できるPHP5.4から導入された新しい仕組み</p>
+<p><a href="http://php.net/manual/ja/language.oop5.traits.php">http://php.net/manual/ja/language.oop5.traits.php</a></p>
+
+          </div>
+          <div class="box"><p>abstract クラスのように実装を定義していける。</p>
+<p>利用する側のクラスで<code>use</code>句を使って利用していく。</p>
+<p>traitは継承ツリーに入らないので、タイプヒントや<code>instanceOf</code>判定では使えない。</p>
+<p><a href="https://github.com/mikakane/laravel_sample/blob/master/app/Http/Controllers/UserControllerTrait.php">app/Http/Controllers/UserControllerTrait.php</a></p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="model">Model</h2>
+<p>主にデータベースと接続したり、処理を行ったりする場所</p>
+<p>情報設計の中心となる領域で複雑なロジックが入りやすい所。</p>
+
+          </div>
+          <div class="box"><p>モデル層の設計はドメイン駆動設計などが今はトレンド</p>
+<p>今回は比較的簡単に利用できるActiveRecordパターンを紹介</p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="query-builder">Query Builder</h2>
+<p>クエリ発行をメソドチェインで解決してくれる仕組み。</p>
+<p><a href="http://laravel.com/docs/5.1/queries">http://laravel.com/docs/5.1/queries</a></p>
+
+          </div>
+          <div class="box"><p>豊富なメソドが用意されており、大抵のSQLはクエリビルダを通して生成できる。</p>
+<p>集計用のメソドなども用意されている。</p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="eloquent">Eloquent</h2>
+<p>Laravelの提供するActiveRecordパターン</p>
+<p><a href="http://laravel.com/docs/5.1/eloquent">http://laravel.com/docs/5.1/eloquent</a></p>
+
+          </div>
+          <div class="box"><p>クラスを作成するだけで、データモデルが作成できる。</p>
+<p>DBの結果を配列でなく、オブジェクトで受け取る事ができる(データ処理が実装できる、instanceOfできる)。</p>
+<p>JOIN句のサポートやn+1問題の解決なども</p>
+
+          </div>
+        </section>
+        <section data-background="./horizontal.svg">
+          <div class="box"><h2 id="-">その他便利機能</h2>
+
+          </div>
+          <div class="box"><ul>
+<li>Artisan</li>
+<li>IoCコンテナ</li>
+<li>ServiceProvider</li>
+<li>MiddleWare</li>
+<li>Validation</li>
+</ul>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="artisan">Artisan</h2>
+<p>CLIコマンドの作成ツール。SymfonyConsoleのラッパー</p>
+<p><a href="http://laravel.com/docs/5.1/artisan">http://laravel.com/docs/5.1/artisan</a></p>
+
+          </div>
+          <div class="box"><p>SymfonyConsoleの使いにくい部分が色々と改善されている。</p>
+<p>出力用のヘルパーなども豊富。</p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="ioc-">IoCコンテナ</h2>
+<p>Laravelの核となる要素。各種サービスオブジェクトを管理するコンテナ</p>
+<p><a href="http://laravel.com/docs/5.1/container">http://laravel.com/docs/5.1/container</a></p>
+
+          </div>
+          <div class="box"><p>テスト用にモッククラスなどを差し替えたり、<code>static</code>の実装なしにシングルトンを実装したり、インターフェイスとオブジェクトのヒモ付を設定レベルで定義できたりする。</p>
+<p>他のフレームワークでも採用されている概念なので、心得ておくと何かと便利</p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="serviceprovider">ServiceProvider</h2>
+<p>アプリケーションの初期化に関する処理の枠組み</p>
+<p><a href="http://laravel.com/docs/5.1/providers">http://laravel.com/docs/5.1/providers</a></p>
+
+          </div>
+          <div class="box"><p>コンテナの設定やConfigファイルの読み込みを行ったりする。</p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="middleware">MiddleWare</h2>
+<p>コントローラにフィルタ処理を外部から差し込む仕組み</p>
+<p><a href="http://laravel.com/docs/5.1/middleware">http://laravel.com/docs/5.1/middleware</a></p>
+
+          </div>
+          <div class="box"><p>コントローラの外から、コントローラフィルタを定義できる。</p>
+<p>同じRestAPIのルートをWeb用とモバイル・アプリ用で再利用しつつ、
+別の認証を定義する、などの応用が可能。</p>
+
+          </div>
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="validation">Validation</h2>
+<p>Laravelのバリデーション機構</p>
+<p><a href="http://laravel.com/docs/5.1/validation">http://laravel.com/docs/5.1/validation</a></p>
+
+          </div>
+          <div class="box"><p>Controllerとの連携で標準で用意されているtraitを援用しつつ、シンプルにバリデーション処理を記述することが可能</p>
+
+          </div>
+        </section>
+        <section><h2 id="-">まとめ</h2>
+<ul>
+<li>とりあえずLaravel使ってみよう。</li>
+<li>わかるところから少しづつ触っていけばOK</li>
+<li>基本はルートとMVC</li>
+<li>モデル層の設計は奥が深いです。</li>
+<li>ちょっとづつ色々勉強していこう!!</li>
+</ul>
+
+        </section>
+        <section><p>超もくもくタイム!!</p>
+
+        </section>
+      </div>
+    </div>
+    <p style="font-family:'mplus-1p-thin';color:transparant">sample</p>
+  </body>
+</html>

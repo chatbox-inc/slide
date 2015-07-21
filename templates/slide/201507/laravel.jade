@@ -1,0 +1,363 @@
+extends ../layout.jade
+
+block titles
+    title Laravel PHP フレームワーク 超入門
+    meta(name='description', content='Laravel PHP フレームワーク 超入門')
+    meta(name='author', content='mikakane')
+
+block style
+    link#theme(rel='stylesheet', href='/assets/css/custom/pale.css')
+
+
+block sections
+    section.cover
+        :markdown
+            # Laravelで学ぶPHP 2015
+
+            [関西PHP UserGroup 8月勉強会](https://kphpug.doorkeeper.jp/events/27544)
+    section
+        :markdown
+            ## mikakane
+
+            - 株式会社chatbox 代表
+            - PHPer / フロントエンド
+
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Laravel
+
+                PHP界隈で何かと話題のフレームワーク
+
+                http://laravel.com
+        div.box
+            :markdown
+                初心者におすすめか…と言われるとそうでもない
+
+                とりあえず郷に入らば郷に従え…的な感じでのおすすめ
+    section(data-background="./horizontal.svg")
+        div.box
+            :markdown
+                ## 豊富な機能
+        div.box
+            :markdown
+                - 基本的なMVC
+                - クロージャルート
+                - セッション/DB仮想化
+                - DBマイグレーション
+                - テンプレートエンジン
+                - CLIサポート
+                - 自動テストサポート
+                - IoCコンテナ
+                - 認証
+                - キュー処理
+                - 支払処理
+    section
+        :markdown
+            フルスタックフレームワーク
+    section(data-background="./horizontal.svg")
+        div.box
+            :markdown
+                ## 環境要件
+        div.box
+            :markdown
+                - PHP >= 5.5.9
+                - OpenSSL PHP Extension
+                - PDO PHP Extension
+                - Mbstring PHP Extension
+                - Tokenizer PHP Extension
+    section
+        :markdown
+            やや、厳しめ…
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Laravel Homestead
+
+                Vagrantを利用してLaravel5.1が動作する簡単に仮想環境を構築できる。
+
+                http://laravel.com/docs/5.1/homestead
+        div.box
+            :markdown
+                [Vagrant](http://vagrantup.com/)は、`Vagrantfile`と呼ばれる設定ファイルを元に仮想環境をセットアップするプロダクト。
+
+                その他Macだと[http://php-osx.liip.ch/](http://php-osx.liip.ch/)のPHPを導入する方法も
+    section
+        :markdown
+            ## シンプルな構成
+
+            シンプルにクロージャのルートを書くことで、ルートを定義できる。
+
+            ````
+            Route::get('/', function () {
+                return view('welcome');
+            });
+
+            Route::get('/sample', function () {
+                return "hello world";
+            });
+
+            Route::get('/dashboard', function () {
+                //view関数でテンプレートをレンダリング 第二引数で変数をバインド
+                return view('sample/dashboard',[
+                    "message" => "Hello World"
+                ]);
+            });
+            ````
+
+            [app/Http/routes.php](https://github.com/mikakane/laravel_sample/blob/master/app/Http/routes.php)
+
+
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## View - Blade Template
+
+                Laravelの提供するTemplate Engine
+
+                http://laravel.com/docs/5.1/blade
+        div.box
+            :markdown
+                ファイルは全て`resource`ディレクトリの中へ
+
+                拡張子を`.blade.php`に切り替えることで利用可能。SmartyやTwigよりは柔軟で使いやすい印章
+
+                もちろん普通のPHPテンプレートも使える。
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Database
+                DBの接続は、DBクラスからクエリ発行で可能
+
+                Databaseの設定は`config/database.php`で
+        div.box
+            :markdown
+                クエリビルダや、Eloquentを利用したよりシンプルなDBへの接続方法も(後述)
+
+                DBの種別はMySQLやPostgres,SQL ServerからSQLiteまで
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Migrate
+                テーブルを作成したり、テストデータを投入したりする仕組み
+
+                [database/migrations/2014_..._users_table.php](https://github.com/mikakane/laravel_sample/blob/master/database/migrations/2014_10_12_000000_create_users_table.php)
+
+                [database/seeds/DatabaseSeeder.php](https://github.com/mikakane/laravel_sample/blob/master/database/seeds/DatabaseSeeder.php)
+
+        div.box
+            :markdown
+                以下のコマンドを叩くことで、
+                テーブルの作成/テストデータの投入が可能
+
+                ````
+                $ php artisan migrate ＃テーブルの作成
+
+                $ php artisan db:seed # テストデータ投入
+                ````
+    section
+        :markdown
+            このへんの基本さえ抑えておけば、
+
+            まぁアプリケーションはとりあえず組める。
+    section
+        :markdown
+            ただ、ルートにまとめて書いていくと…
+
+            当然スパゲティになる
+    section
+        :markdown
+            適当なクラス分割：設計が必要
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## MVC - Model View Controller
+                広く一般的に知られるアプリケーション設計
+
+                Laravelでも採用されている。
+        div.box
+            :markdown
+                Viewの切り分けは`view()`関数とテンプレートで実現可能。
+
+                ControllerとModelの切り分けはクラス分割で進めていく。
+
+                分割したクラスをどうやって管理するか => Autoloader
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Autoloader
+                分割されたクラスを自動的に読み込む`Composer`の仕組み
+
+                ファイルパスとクラス名(+[名前空間](http://php.net/manual/ja/language.namespaces.php))の対応付けで自動読み込みを行う。
+        div.box
+            :markdown
+                もう`require`や`require_once`は書かなくていい。
+
+                必要なファイルは必要なときに読み込まれる。
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Controller
+
+                リクエストの処理や、View、Modelの呼び出しなどを行う場所
+
+                極力スッキリと簡潔になるよう努めると、アプリケーションの保守性が大きく変わってくる。
+        div.box
+            :markdown
+                Controllerもルートの設定は必要
+
+                traitなどを使用して、アクションメソドの中身を極力簡潔に整理していくと良い。
+
+                [app/Http/Controllers/UserController.php](https://github.com/mikakane/laravel_sample/blob/master/app/Http/Controllers/UserController.php)
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Trait
+
+                クラスの実装などを分離できるPHP5.4から導入された新しい仕組み
+
+                http://php.net/manual/ja/language.oop5.traits.php
+        div.box
+            :markdown
+                abstract クラスのように実装を定義していける。
+
+                利用する側のクラスで`use`句を使って利用していく。
+
+                traitは継承ツリーに入らないので、タイプヒントや`instanceOf`判定では使えない。
+
+                [app/Http/Controllers/UserControllerTrait.php](https://github.com/mikakane/laravel_sample/blob/master/app/Http/Controllers/UserControllerTrait.php)
+
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Model
+
+                主にデータベースと接続したり、処理を行ったりする場所
+
+                情報設計の中心となる領域で複雑なロジックが入りやすい所。
+        div.box
+            :markdown
+                モデル層の設計はドメイン駆動設計などが今はトレンド
+
+                今回は比較的簡単に利用できるActiveRecordパターンを紹介
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Query Builder
+
+                クエリ発行をメソドチェインで解決してくれる仕組み。
+
+                http://laravel.com/docs/5.1/queries
+        div.box
+            :markdown
+                豊富なメソドが用意されており、大抵のSQLはクエリビルダを通して生成できる。
+
+                集計用のメソドなども用意されている。
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Eloquent
+
+                Laravelの提供するActiveRecordパターン
+
+                http://laravel.com/docs/5.1/eloquent
+
+        div.box
+            :markdown
+                クラスを作成するだけで、データモデルが作成できる。
+
+                DBの結果を配列でなく、オブジェクトで受け取る事ができる(データ処理が実装できる、instanceOfできる)。
+
+                JOIN句のサポートやn+1問題の解決なども
+    section(data-background="./horizontal.svg")
+        div.box
+            :markdown
+                ## その他便利機能
+        div.box
+            :markdown
+                - Artisan
+                - IoCコンテナ
+                - ServiceProvider
+                - MiddleWare
+                - Validation
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Artisan
+
+                CLIコマンドの作成ツール。SymfonyConsoleのラッパー
+
+                http://laravel.com/docs/5.1/artisan
+        div.box
+            :markdown
+                SymfonyConsoleの使いにくい部分が色々と改善されている。
+
+                出力用のヘルパーなども豊富。
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## IoCコンテナ
+
+                Laravelの核となる要素。各種サービスオブジェクトを管理するコンテナ
+
+                http://laravel.com/docs/5.1/container
+        div.box
+            :markdown
+                テスト用にモッククラスなどを差し替えたり、`static`の実装なしにシングルトンを実装したり、インターフェイスとオブジェクトのヒモ付を設定レベルで定義できたりする。
+
+                他のフレームワークでも採用されている概念なので、心得ておくと何かと便利
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## ServiceProvider
+
+                アプリケーションの初期化に関する処理の枠組み
+
+                http://laravel.com/docs/5.1/providers
+        div.box
+            :markdown
+                コンテナの設定やConfigファイルの読み込みを行ったりする。
+
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## MiddleWare
+
+                コントローラにフィルタ処理を外部から差し込む仕組み
+
+                http://laravel.com/docs/5.1/middleware
+        div.box
+            :markdown
+                コントローラの外から、コントローラフィルタを定義できる。
+
+                同じRestAPIのルートをWeb用とモバイル・アプリ用で再利用しつつ、
+                別の認証を定義する、などの応用が可能。
+
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Validation
+
+                Laravelのバリデーション機構
+
+                http://laravel.com/docs/5.1/validation
+        div.box
+            :markdown
+                Controllerとの連携で標準で用意されているtraitを援用しつつ、シンプルにバリデーション処理を記述することが可能
+
+    section
+        :markdown
+            ## まとめ
+            - とりあえずLaravel使ってみよう。
+            - わかるところから少しづつ触っていけばOK
+            - 基本はルートとMVC
+            - モデル層の設計は奥が深いです。
+            - ちょっとづつ色々勉強していこう!!
+    section
+        :markdown
+            超もくもくタイム!!
+
+
+
+
+

@@ -10,17 +10,19 @@ html(lang='ja')
     meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
     meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui')
 
+    //- revealの基本CSS
     link(rel='stylesheet', href='/bower_components/reveal.js/css/reveal.css')
     //link(rel='stylesheet', href='http://fonts.googleapis.com/earlyaccess/notosansjapanese.css')
-    style.
-        @font-face
-        {
-        font-family: mplus-1p-thin;
-        src: url('/assets/font/mplus-2p-thin.woff')
-            format("truetype");
-        }
-    link#theme(rel='stylesheet', href='/assets/css/mytheme.css')
-    link(rel='stylesheet', href='/bower_components/reveal.js/lib/css/zenburn.css')
+    block style
+        style.
+            @font-face
+            {
+            font-family: mplus-1p-thin;
+            src: url('/assets/font/mplus-2p-thin.woff')
+                format("truetype");
+            }
+        link#theme(rel='stylesheet', href='/assets/css/mytheme.css')
+        link(rel='stylesheet', href='/bower_components/reveal.js/lib/css/zenburn.css')
 
     script(src='/bower_components/jquery/dist/jquery.min.js')
     script(src='/bower_components/reveal.js/lib/js/head.min.js')

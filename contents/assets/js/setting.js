@@ -5,7 +5,7 @@ link.href = window.location.search.match( /print-pdf/gi ) ? '/bower_components/r
 document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 
-document.fonts.addEventListener('loadingdone', function() {
+var initSlides = function() {
     console.log("fonts-loaded");
     // Full list of configuration options available at:
     // https://github.com/hakimel/reveal.js#configuration
@@ -30,5 +30,25 @@ document.fonts.addEventListener('loadingdone', function() {
     Reveal.addEventListener( 'ready', function( event ) {
         $(".spinner").fadeOut();
     } );
-});
+
+    Reveal.addEventListener( 'slidechanged', function( event ) {
+        var layout = $("section.present").attr("data-layout");
+        if(layout == "vertical2"){
+            console.log("hogeko")
+        }else if(layout == "horizontal2"){
+            console.log("hogemi")
+        }
+
+        console.log(layout)
+        // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+    } );
+
+    $("a").attr("target","_blank")
+};
+
+if(document.fonts){
+    document.fonts.addEventListener('loadingdone', initSlides);
+}else{
+    initSlides();
+}
 
