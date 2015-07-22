@@ -49,6 +49,8 @@ var initSlides = function() {
 if(document.fonts){
     document.fonts.addEventListener('loadingdone', initSlides);
 }else{
-    initSlides();
+    $(function(){
+        initSlides();
+    })
 }
 
