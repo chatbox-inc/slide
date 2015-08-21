@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Laravel PHP フレームワーク 超入門</title>
+    <meta name="description" content="Laravel PHP フレームワーク 超入門">
+    <meta name="author" content="mikakane">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="/bower_components/reveal.js/css/reveal.css">
+    <!--link(rel='stylesheet', href='http://fonts.googleapis.com/earlyaccess/notosansjapanese.css')-->
+    <link id="theme" rel="stylesheet" href="/assets/css/custom/paleYellow.css">
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script src="/bower_components/reveal.js/js/reveal.js"></script>
+    <script src="/assets/js/setting.js"></script>
+  </head>
+  <body>
+    <div class="spinner"></div>
+    <div class="reveal">
+      <div class="slides">
+        <section class="cover"><h1 id="-wintersmith">夏だけどWintersmith</h1>
+<p><a href="http://kfug.github.io/events/2015/grandfrontendosaka/">Grand Frontend Osaka 2015 Summer</a></p>
+<p><a href="https://twitter.com/mkkn_info">@mkkn_info</a></p>
+
+        </section>
+        <section data-background="./horizontal.svg">
+          <div class="box"><h2 id="mikakane">mikakane</h2>
+<img src="https://pbs.twimg.com/profile_images/481042066491703296/JF4JtjHE_400x400.jpeg" style="width:5em">
+          </div>
+          <div class="box"><ul>
+<li><a href="http://chatbox-inc.com">株式会社chatbox</a> 代表</li>
+<li>パソコン系のお仕事</li>
+<li>フロントエンドUGとか</li>
+</ul>
+
+          </div>
+        </section>
+        <section><p>frontend</p>
+
+        </section>
+        <section><p>javascript</p>
+
+        </section>
+        <section><p>css</p>
+
+        </section>
+        <section><p>htmlは？</p>
+
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="jade">Jade</h2>
+<p>フロントエンド界隈ではおなじみのテンプレートエンジン</p>
+<p><a href="http://jade-lang.com/">http://jade-lang.com/</a></p>
+
+          </div>
+          <div class="box"><p>HTMLっぽくない感じのインデントによる記述方法が、
+気持ちいいとか気持ちよくないとか。</p>
+<p>とりあえず <code>$ npm install jade</code></p>
+
+          </div>
+        </section>
+        <section><h2 id="jade-">Jade 記述例</h2>
+<p>インデントでDOMの階層を表す。
+変数割り当てができたりする。</p>
+<pre><code>doctype html
+html(lang=&quot;en&quot;)
+  head
+    title= pageTitle
+    script(type=&#39;text/javascript&#39;).
+      if (foo) {
+         bar(1 + 5)
+      }
+  body
+    h1 Jade - node template engine
+    #container.col
+      if youAreUsingJade
+        p You are amazing
+      else
+        p Get on it!
+      p.
+        Jade is a terse and simple
+        templating language with a
+        strong focus on performance
+        and powerful features.
+</code></pre>
+        </section>
+        <section><p>で、このJadeのコンパイル、どうやってますか？</p>
+
+        </section>
+        <section><p>jade コマンド？</p>
+<p>gulp jade？</p>
+
+        </section>
+        <section><p>普通にコンパイルするだけならまだいいけど、</p>
+<p>変数割り当てとか入ってくると、
+どんどんオレオレgulpfile化していく</p>
+
+        </section>
+        <section><p>周りと足並み揃えてないと不安で仕方ない!!</p>
+
+        </section>
+        <section><p>そこでWintersmith</p>
+
+        </section>
+        <section><p>夏だけど、Wintersmith</p>
+
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="wintersmith">Wintersmith</h2>
+<p>静的サイトジェネレータ。
+Hexoのごっつシンプル版みたいな</p>
+<p><a href="http://wintersmith.io/">http://wintersmith.io/</a></p>
+
+          </div>
+          <div class="box"><p>静的サイトジェネレータ触った時によくある、
+お作法の学習みたいなのが殆ど無い。とってもシンプル。</p>
+<p>ドキュメントも非常に少ない。</p>
+
+          </div>
+        </section>
+        <section><p>ドキュメントも非常に少ない。</p>
+
+        </section>
+        <section data-background="./vertical.svg">
+          <div class="box"><h2 id="wintersmith-quick-start-guide">Wintersmith Quick Start guide</h2>
+<p><a href="https://github.com/jnordberg/wintersmith#quick-start">https://github.com/jnordberg/wintersmith#quick-start</a></p>
+<p><code>$ npm install wintersmith -g</code>でインストール。</p>
+<p><code>$ wintersmith new &lt;path&gt;</code>でプロジェクト作成</p>
+
+          </div>
+          <div class="box"><p>基本的なブログテンプレートのスケルトンが出来上がる。</p>
+<p>cdして<code>wintersmith preview</code>でサイトの確認が可能。</p>
+
+          </div>
+        </section>
+        <section><h2 id="wintersmith-">Wintersmith ディレクトリ構成</h2>
+<p>contentsディレクトリの中のファイルがbuildにそのまま流れていくイメージ</p>
+<pre><code>$ tree
+.
+├── config.json  // 設定ファイル
+├── build        // ビルドした際の結果格納ディレクトリ
+├── contents     // メインのCSSや画像HTMLなど
+├── node_modules
+├── package.json
+├── plugins      // プラグインスクリプトを配置
+├── readme.md
+└── templates    // 各種テンプレートファイル(jade)
+</code></pre><p>ビルド時にプラグインを実行したりとか、
+yfm,jsonで書かれたオブジェクトをjadeテンプレートに流し込むことが可能</p>
+
+        </section>
+        <section><p>こんな人にオススメ</p>
+<ul>
+<li>jadeで楽にサイト管理したい人</li>
+<li>コンパイルのオレオレフローは作りたくない人</li>
+<li>静的サイトジェネレータにつかれた人</li>
+<li>nodeでbuildするフローに興奮する人</li>
+</ul>
+
+        </section>
+        <section><p>Wintersmithなどの静的サイトなら
+サーバ管理も楽ちんに済ましたい</p>
+
+        </section>
+        <section><p>githubにpush</p>
+<p>↓</p>
+<p>CIツールによるビルド＆圧縮</p>
+<p>↓</p>
+<p>S3などへ配置</p>
+
+        </section>
+        <section><p>自動化の夢</p>
+
+        </section>
+        <section><p><code>$ npm install wintersmith</code></p>
+<p>実行時間との戦い(長い…)</p>
+
+        </section>
+        <section><p>お急ぎの方は手動でビルドをオススメします。</p>
+<p>(デプロイのみの自動化)</p>
+
+        </section>
+        <section><p>Wintersmithで、</p>
+<p>脱 FTP</p>
+<p>脱 オレオレgulpfile</p>
+<p>脱 オレオレデプロイフロー</p>
+
+        </section>
+        <section><p>シンプルな静的サイトは、</p>
+<p>運用もスマートに</p>
+
+        </section>
+        <section><p>夏こそ Wintersmith</p>
+
+        </section>
+        <section><p>ご清澄ありがとうございました。</p>
+
+        </section>
+      </div>
+    </div>
+    <p style="font-family:'mplus-1p-thin';color:transparant">sample</p>
+  </body>
+</html>

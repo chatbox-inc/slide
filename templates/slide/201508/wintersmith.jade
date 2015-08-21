@@ -1,0 +1,226 @@
+extends ../layout.jade
+
+block titles
+    title Laravel PHP フレームワーク 超入門
+    meta(name='description', content='Laravel PHP フレームワーク 超入門')
+    meta(name='author', content='mikakane')
+
+block style
+    link#theme(rel='stylesheet', href='/assets/css/custom/paleYellow.css')
+
+
+block sections
+    section.cover
+        :markdown
+            # 夏だけどWintersmith
+
+            [Grand Frontend Osaka 2015 Summer](http://kfug.github.io/events/2015/grandfrontendosaka/)
+
+            [@mkkn_info](https://twitter.com/mkkn_info)
+
+    section(data-background="./horizontal.svg")
+        div.box
+            :markdown
+                ## mikakane
+
+            img(src="https://pbs.twimg.com/profile_images/481042066491703296/JF4JtjHE_400x400.jpeg",style="width:5em")
+        div.box
+            :markdown
+                - [株式会社chatbox](http://chatbox-inc.com) 代表
+                - パソコン系のお仕事
+                - フロントエンドUGとか
+
+    section
+        :markdown
+            frontend
+    section
+        :markdown
+            javascript
+    section
+        :markdown
+            css
+    section
+        :markdown
+            htmlは？
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Jade
+
+                フロントエンド界隈ではおなじみのテンプレートエンジン
+
+                http://jade-lang.com/
+        div.box
+            :markdown
+                HTMLっぽくない感じのインデントによる記述方法が、
+                気持ちいいとか気持ちよくないとか。
+
+                とりあえず `$ npm install jade`
+    section
+        :markdown
+            ## Jade 記述例
+
+            インデントでDOMの階層を表す。
+            変数割り当てができたりする。
+
+            ````
+            doctype html
+            html(lang="en")
+              head
+                title= pageTitle
+                script(type='text/javascript').
+                  if (foo) {
+                     bar(1 + 5)
+                  }
+              body
+                h1 Jade - node template engine
+                #container.col
+                  if youAreUsingJade
+                    p You are amazing
+                  else
+                    p Get on it!
+                  p.
+                    Jade is a terse and simple
+                    templating language with a
+                    strong focus on performance
+                    and powerful features.
+            ````
+    section
+        :markdown
+            で、このJadeのコンパイル、どうやってますか？
+    section
+        :markdown
+            jade コマンド？
+
+            gulp jade？
+    section
+        :markdown
+            普通にコンパイルするだけならまだいいけど、
+
+            変数割り当てとか入ってくると、
+            どんどんオレオレgulpfile化していく
+    section
+        :markdown
+            周りと足並み揃えてないと不安で仕方ない!!
+    section
+        :markdown
+            そこでWintersmith
+    section
+        :markdown
+            夏だけど、Wintersmith
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Wintersmith
+
+                静的サイトジェネレータ。
+                Hexoのごっつシンプル版みたいな
+
+                http://wintersmith.io/
+        div.box
+            :markdown
+                静的サイトジェネレータ触った時によくある、
+                お作法の学習みたいなのが殆ど無い。とってもシンプル。
+
+                ドキュメントも非常に少ない。
+    section
+        :markdown
+            ドキュメントも非常に少ない。
+    section(data-background="./vertical.svg")
+        div.box
+            :markdown
+                ## Wintersmith Quick Start guide
+
+                https://github.com/jnordberg/wintersmith#quick-start
+
+                `$ npm install wintersmith -g`でインストール。
+
+                `$ wintersmith new <path>`でプロジェクト作成
+        div.box
+            :markdown
+                基本的なブログテンプレートのスケルトンが出来上がる。
+
+                cdして`wintersmith preview`でサイトの確認が可能。
+    section
+        :markdown
+            ## Wintersmith ディレクトリ構成
+
+            contentsディレクトリの中のファイルがbuildにそのまま流れていくイメージ
+
+            ````
+            $ tree
+            .
+            ├── config.json  // 設定ファイル
+            ├── build        // ビルドした際の結果格納ディレクトリ
+            ├── contents     // メインのCSSや画像HTMLなど
+            ├── node_modules
+            ├── package.json
+            ├── plugins      // プラグインスクリプトを配置
+            ├── readme.md
+            └── templates    // 各種テンプレートファイル(jade)
+            ````
+
+            ビルド時にプラグインを実行したりとか、
+            yfm,jsonで書かれたオブジェクトをjadeテンプレートに流し込むことが可能
+    section
+        :markdown
+            こんな人にオススメ
+
+            - jadeで楽にサイト管理したい人
+            - コンパイルのオレオレフローは作りたくない人
+            - 静的サイトジェネレータにつかれた人
+            - nodeでbuildするフローに興奮する人
+
+    section
+        :markdown
+            Wintersmithなどの静的サイトなら
+            サーバ管理も楽ちんに済ましたい
+    section
+        :markdown
+            githubにpush
+
+            ↓
+
+            CIツールによるビルド＆圧縮
+
+            ↓
+
+            S3などへ配置
+    section
+        :markdown
+            自動化の夢
+    section
+        :markdown
+            `$ npm install wintersmith`
+
+            実行時間との戦い(長い…)
+    section
+        :markdown
+            お急ぎの方は手動でビルドをオススメします。
+
+            (デプロイのみの自動化)
+    section
+        :markdown
+            Wintersmithで、
+
+            脱 FTP
+
+            脱 オレオレgulpfile
+
+            脱 オレオレデプロイフロー
+    section
+        :markdown
+            シンプルな静的サイトは、
+
+            運用もスマートに
+    section
+        :markdown
+            夏こそ Wintersmith
+    section
+        :markdown
+            ご清澄ありがとうございました。
+
+
+
+
+
